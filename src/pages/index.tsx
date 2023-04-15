@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
-import { GetServerSideProps, NextPage } from "next";
+import { GetStaticProps } from "next";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -15,7 +15,7 @@ type GithubProfile = {
   id: number
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps<Props> = async () => {
   const res = await fetch(process.env.GITHUB_ENDPOINT as string)
   const data = await res.json()
 
