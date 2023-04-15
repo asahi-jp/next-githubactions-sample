@@ -16,7 +16,7 @@ type GithubProfile = {
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const res = await fetch(process.env.GITHUB_ENDPOINT as string)
+  const res = await fetch(process.env.API_ENDPOINT as string)
   const data = await res.json()
 
   return {

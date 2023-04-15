@@ -6,6 +6,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      GITHUB_ENDPOINT: ${{ secrets.GITHUB_ENDPOINT }}
     steps:
       - name: checkout
         uses: actions/checkout@v3
