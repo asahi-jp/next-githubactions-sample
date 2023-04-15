@@ -2,10 +2,34 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
+import { GetServerSideProps, NextPage } from "next";
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
+type Props = {
+  profile: GithubProfile;
+}
+
+type GithubProfile = {
+  login: string,
+  id: number
+}
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const res = await fetch(process.env.GITHUB_ENDPOINT as string)
+  const data = await res.json()
+
+  return {
+    props: {
+      profile: data
+    }
+  };
+};
+
+export default function Home({ profile }: Props) {
+  console.log(profile.id);
+  console.log(profile.login);
+
   return (
     <>
       <Head>
